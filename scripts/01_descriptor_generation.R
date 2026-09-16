@@ -1,3 +1,12 @@
+# NOTE:
+# This script documents the molecular descriptor generation procedure used
+# in the study. The original SMILES data and source datasets are confidential
+# and are therefore not provided in this repository.
+#
+# The datasets used in the modelling workflow already contain the molecular
+# descriptors generated using this procedure. Therefore, this script is not
+# required to run the modelling workflow from the supplied datasets.
+
 library(rcdk)
 library(openxlsx)
 library(readxl)
