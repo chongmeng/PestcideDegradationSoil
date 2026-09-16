@@ -1,13 +1,11 @@
 import pandas as pd
 import numpy as np
 import seaborn as sns
-from sklearn.preprocessing import MinMaxScaler
-from sklearn.preprocessing import LabelEncoder
+from sklearn.preprocessing import MinMaxScaler,LabelEncoder
 from sklearn.model_selection import train_test_split,cross_val_score,KFold
 from sklearn.metrics import mean_squared_error,r2_score
 import xgboost as xgb
 import matplotlib.pyplot as plt
-import os
 import pickle
 
 rs = 42
@@ -75,7 +73,7 @@ print(f"Test R-squared: {test_r2}")
 cv_r2 = cross_val_score(xg_reg, X_train, y_train, cv=cv_strategy, scoring='r2').mean()
 print(f"Cross-Validation R-squared: {cv_r2}")
 cv_scores = cross_val_score(xg_reg, X_train, y_train, cv=cv_strategy, scoring='r2')
-print(f"Cross-Validation R-squared scores on entire data: {cv_scores}")
+print(f"Cross-Validation R-squared scores: {cv_scores}")
 
 cv_mse_scores = -cross_val_score(xg_reg, X_train, y_train, cv=cv_strategy, scoring='neg_mean_squared_error')
 print(f" Cross-Validation MSE scores: {cv_mse_scores}")
@@ -86,10 +84,6 @@ print(f" Standard Deviation of CV MSE: {cv_mse_scores.std():.4f}")
 def pp_plot(actual, predicted, title):
     sorted_actual = np.sort(actual)
     sorted_predicted = np.sort(predicted)
-    
-    # Compute quantiles
-    quantiles = np.linspace(0, 1, len(sorted_actual))
-    
     plt.figure(figsize=(6,6))
     plt.plot(sorted_actual, sorted_predicted, 'o', label='Predicted vs Actual')
     plt.plot(sorted_actual, sorted_actual, 'r--', label='Ideal Line')
