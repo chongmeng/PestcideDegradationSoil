@@ -6,5 +6,5 @@ The underlying data are available from the authors upon reasonable request, subj
 
 The expected input files for the analysis scripts are:
 
-`data_industry.xlsx`
-`data_ppdb.xlsx`
+`data.xlsx`
+
